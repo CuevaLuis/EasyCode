@@ -1,12 +1,13 @@
 package dev.luiscueva.files;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class CharactersFile {
 
-	public static boolean writeCharactersFile(File file, String text, boolean append) {
+	public static final boolean write(File file, String text, boolean append) {
 
 		try {
 			FileWriter bw = new FileWriter(file.getAbsoluteFile(), append);
@@ -18,6 +19,31 @@ public class CharactersFile {
 			return false;
 		}
 	}
+
+	public static final String read(File file) {
+		
+		String ret = "";
+		int aux;
+		
+		try {
+			FileReader br = new FileReader(file);
+			aux = br.read();
+			while(aux != -1) {
+				ret += (char) aux;
+				aux = br.read();
+			}
+			
+			if(br != null) {
+				br.close();	
+			}
+						
+			return ret;
+		} catch (IOException e) {
+			return null;
+		}
+	}
 	
-	
+	public static final String[] split (File file, String symbol) {
+		return read(file).split(symbol);
+	}
 }
