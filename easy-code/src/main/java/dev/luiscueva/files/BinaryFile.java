@@ -3,6 +3,7 @@ package dev.luiscueva.files;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -44,6 +45,7 @@ public class BinaryFile {
 		}
 	}
 
+	//PROBADO
 	@SuppressWarnings("resource")
 	public static final <T extends Serializable> boolean writeObjects(File file, T[] objects) {
 
@@ -81,11 +83,25 @@ public class BinaryFile {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public static final <T extends Serializable> ArrayList<T> readObjects(File file) {
 
-		ArrayList<T> ret = new ArrayList<T>();
+		ArrayList<T> ret = new ArrayList<T>();		
 
-		return ret;
+		try {
+			FileInputStream fis = new FileInputStream(file);
+			try (ObjectInputStream ois = new ObjectInputStream(fis)) {
+				
+				T aux;
+				
+				while (true) {				
+					aux = (T) ois.readObject();
+					ret.add(aux);
+				}
+			}
+		} catch (IOException | ClassNotFoundException e) {			
+			return ret;
+		}
 	}
 
 	public void addObjectToFile() {
