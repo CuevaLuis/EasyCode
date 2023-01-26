@@ -1,44 +1,27 @@
 package dev.luiscueva.threads;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 public class EasyThread extends Thread{
 
-	@SuppressWarnings("rawtypes")
-	private ArrayList sharedResources;
-	private Method method;
+	private ArrayList<Object> sharedResources;
 	
-	public <T> EasyThread(ArrayList<T> sharedResources, Method method) {
+	public  EasyThread(ArrayList<Object> sharedResources) {
 		super();
 		this.sharedResources = sharedResources;
-		this.method = method;
 	}
 	
-	@SuppressWarnings("unchecked")
-	public <T> EasyThread(T sharedResources) {
+	public EasyThread(Object sharedResources) {
 		super();
-		this.sharedResources = new ArrayList<T>();
+		this.sharedResources = new ArrayList<Object>();
 		this.sharedResources.add(sharedResources);
 	}
-	
-	@Override
-	public synchronized void start() {
-		super.start();
-		try {
-			method.invoke(this, method.getParameters());
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
-	public ArrayList<?> getSharedResources() {
+	public ArrayList<Object> getSharedResources() {
 		return sharedResources;
 	}
 
-	public void setSharedResources(ArrayList<?> sharedResources) {
+	public void setSharedResources(ArrayList<Object> sharedResources) {
 		this.sharedResources = sharedResources;
 	}
 	
