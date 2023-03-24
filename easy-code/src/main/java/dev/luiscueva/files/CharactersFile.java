@@ -21,7 +21,7 @@ public class CharactersFile {
 		}
 	}
 
-	// PROBA
+	// PROBADO
 	public static final String read(File file) {
 		
 		String ret = "";
