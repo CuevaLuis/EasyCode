@@ -1,12 +1,26 @@
 package dev.luiscueva.threads;
 
 import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Este objeto necesita ser instaciado como una clase anónima
+ * en la que se sobreescriba el método start, propio de Thread
+ * 
+ * @author Luis Cueva
+ *
+ */
 
 public class EasyThread extends Thread{
 
-	private ArrayList<Object> sharedResources;
+	private List<Object> sharedResources;
 	
-	public  EasyThread(ArrayList<Object> sharedResources) {
+	public  EasyThread() {
+		super();
+		this.sharedResources = null;
+	}
+	
+	public  EasyThread(List<Object> sharedResources) {
 		super();
 		this.sharedResources = sharedResources;
 	}
@@ -15,13 +29,13 @@ public class EasyThread extends Thread{
 		super();
 		this.sharedResources = new ArrayList<Object>();
 		this.sharedResources.add(sharedResources);
-	}
+	}	
 
-	public ArrayList<Object> getSharedResources() {
+	public List<Object> getSharedResources() {
 		return sharedResources;
 	}
 
-	public void setSharedResources(ArrayList<Object> sharedResources) {
+	public void setSharedResources(List<Object> sharedResources) {
 		this.sharedResources = sharedResources;
 	}
 	
