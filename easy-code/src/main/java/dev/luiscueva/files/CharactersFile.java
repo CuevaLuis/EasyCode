@@ -7,6 +7,7 @@ import java.io.IOException;
 
 public class CharactersFile {
 
+	// PROBADO
 	public static final boolean write(File file, String text, boolean append) {
 
 		try {
@@ -20,6 +21,7 @@ public class CharactersFile {
 		}
 	}
 
+	// PROBADO
 	public static final String read(File file) {
 		
 		String ret = "";
@@ -43,6 +45,7 @@ public class CharactersFile {
 		}
 	}
 	
+	// PROBADO
 	public static final String[] split (File file, String symbol) {
 		return read(file).split(symbol);
 	}
